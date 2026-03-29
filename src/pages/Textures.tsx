@@ -1,10 +1,12 @@
-import { useMemo, useRef } from "react";
+import { useRef, useState } from "react";
 import Canvas from "../components/Canvas";
-import type { Rgb } from "../types";
+import SolidTexture from "../components/SolidTexture";
+import type { RgbImageData } from "../types";
 
 const imageFilename = "texture.png";
 
 export default function Textures() {
+  const [imageData, setImageData] = useState<RgbImageData>([]);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   function download() {
@@ -19,30 +21,11 @@ export default function Textures() {
 
   return (
     <div>
-      <Canvas
-        canvasRef={canvasRef}
-        newImageData={useMemo(() => createWhiteImageData(), [])}
-      />
+      <SolidTexture setImageData={setImageData} />
+      <br />
+      <Canvas canvasRef={canvasRef} newImageData={imageData} />
       <br />
       <button onClick={download}>download</button>
     </div>
   );
-}
-
-function createWhiteImageData() {
-  const width = 256;
-  const height = 256;
-  const imageData: Rgb[][] = [];
-
-  for (let y = 0; y < height; y++) {
-    const row: Rgb[] = [];
-
-    for (let x = 0; x < width; x++) {
-      row.push({ r: 255, g: 255, b: 255 });
-    }
-
-    imageData.push(row);
-  }
-
-  return imageData;
 }

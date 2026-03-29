@@ -3,3 +3,7 @@ export type Rgb = {
   g: number;
   b: number;
 };
+
+export type RgbChannel = keyof Rgb;
+
+export type RgbImageData = Rgb[][];

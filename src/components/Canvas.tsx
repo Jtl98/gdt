@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import type { Rgb } from "../types";
+import type { RgbImageData } from "../types";
 
 export default function Canvas({ canvasRef, newImageData }: CanvasAttributes) {
   useEffect(() => {
@@ -38,5 +38,5 @@ export default function Canvas({ canvasRef, newImageData }: CanvasAttributes) {
 
 type CanvasAttributes = {
   canvasRef: React.RefObject<HTMLCanvasElement | null>;
-  newImageData: Rgb[][];
+  newImageData: RgbImageData;
 };
