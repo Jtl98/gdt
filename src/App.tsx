@@ -1,8 +1,19 @@
+import { Route, Routes } from "react-router";
+import Home from "./Home";
+import Nav from "./Nav";
+import Textures from "./Textures";
+
 function App() {
   return (
-    <div>
-      <h1>game dev tools</h1>
-    </div>
+    <>
+      <Nav />
+      <Routes>
+        <Route path="gdt">
+          <Route index element={<Home />} />
+          <Route path="textures" element={<Textures />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
