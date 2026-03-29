@@ -1,6 +1,6 @@
 import { useMemo, useRef } from "react";
-import Canvas from "./Canvas";
-import type { Rgb } from "./types";
+import Canvas from "../Canvas";
+import type { Rgb } from "../types";
 
 const imageFilename = "texture.png";
 

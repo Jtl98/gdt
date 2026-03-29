@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router";
-import Home from "./Home";
 import Nav from "./Nav";
-import Textures from "./Textures";
+import Home from "./pages/Home";
+import Textures from "./pages/Textures";
 
 function App() {
   return (
