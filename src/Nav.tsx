@@ -4,7 +4,7 @@ import "./nav.css";
 export default function Nav() {
   return (
     <nav>
-      <NavLink to="/gdt" end>
+      <NavLink to="/gdt/" end>
         home
       </NavLink>
       <NavLink to="/gdt/textures">textures</NavLink>
