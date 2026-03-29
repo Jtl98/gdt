@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import Canvas from "../components/Canvas";
 import SolidTexture from "../components/SolidTexture";
 import type { RgbImageData } from "../types";
+import "./textures.css";
 
 const imageFilename = "texture.png";
 
@@ -20,12 +21,14 @@ export default function Textures() {
   }
 
   return (
-    <div>
-      <SolidTexture setImageData={setImageData} />
-      <br />
-      <Canvas canvasRef={canvasRef} newImageData={imageData} />
-      <br />
-      <button onClick={download}>download</button>
+    <div className="textures-container">
+      <div className="textures-left">
+        <SolidTexture setImageData={setImageData} />
+        <button onClick={download}>download</button>
+      </div>
+      <div className="textures-right">
+        <Canvas canvasRef={canvasRef} newImageData={imageData} />
+      </div>
     </div>
   );
 }

@@ -1,0 +1,35 @@
+.textures-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.textures-left {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 0.5rem;
+}
+
+.textures-left,
+.textures-right {
+  width: 25%;
+}
+
+@media (max-width: 512px) {
+  .textures-container {
+    flex-direction: column;
+  }
+
+  .textures-left,
+  .textures-right {
+    width: 100%;
+  }
+
+  .textures-right {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+}

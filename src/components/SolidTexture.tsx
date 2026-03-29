@@ -46,7 +46,6 @@ export default function SolidTexture({ setImageData }: SolidTextureAttributes) {
         type="number"
         value={rgb.r}
       />
-      <br />
       <input
         onChange={onChangeRgb("g")}
         max={255}
@@ -54,7 +53,6 @@ export default function SolidTexture({ setImageData }: SolidTextureAttributes) {
         type="number"
         value={rgb.g}
       />
-      <br />
       <input
         onChange={onChangeRgb("b")}
         max={255}
