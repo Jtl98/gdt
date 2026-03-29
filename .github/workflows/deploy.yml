@@ -1,0 +1,53 @@
+name: deploy pages
+
+on:
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy-pages.outputs.page_url }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v6
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v5
+
+      - name: setup node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: install
+        run: pnpm install
+
+      - name: build
+        run: pnpm build
+
+      - name: setup pages
+        uses: actions/configure-pages@v6
+
+      - name: upload pages
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: "./dist"
+
+      - name: deploy pages
+        id: deploy-pages
+        uses: actions/deploy-pages@v5
