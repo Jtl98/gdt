@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import type { Rgb } from "./types";
+import type { Rgb } from "../types";
 
 export default function Canvas({ canvasRef, newImageData }: CanvasAttributes) {
   useEffect(() => {
