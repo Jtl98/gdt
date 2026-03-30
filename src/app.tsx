@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router";
-import Nav from "./components/Nav";
-import Home from "./pages/Home";
-import Textures from "./pages/Textures";
+import Nav from "./components/nav";
+import Home from "./pages/home";
+import Textures from "./pages/textures";
 
-function App() {
+export default function App() {
   return (
     <>
       <Nav />
@@ -16,5 +16,3 @@ function App() {
     </>
   );
 }
-
-export default App;

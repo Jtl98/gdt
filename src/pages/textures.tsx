@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
-import Canvas from "../components/Canvas";
-import SolidTexture from "../components/SolidTexture";
+import Canvas from "../components/canvas";
+import SolidTexture from "../components/solidTexture";
 import type { RgbImageData } from "../types";
 import "./textures.css";
 
