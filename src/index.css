@@ -5,12 +5,14 @@
 
 :root,
 button,
-input {
+input,
+select {
   color: white;
 }
 
 button,
-input {
+input,
+select {
   background-color: #3f3f3f;
   border: none;
   border-radius: 8px;
