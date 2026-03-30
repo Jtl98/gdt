@@ -33,7 +33,7 @@ export default function Textures() {
 
   return (
     <div className="textures-container">
-      <div className="textures-left">
+      <div className="textures-type">
         <select
           value={textureType}
           onChange={(e) => {
@@ -48,7 +48,7 @@ export default function Textures() {
 
         <button onClick={download}>download</button>
       </div>
-      <div className="textures-right">
+      <div className="textures-canvas">
         <Canvas canvasRef={canvasRef} newImageData={imageData} />
       </div>
     </div>

@@ -4,7 +4,7 @@
   margin-top: 1rem;
 }
 
-.textures-left {
+.textures-type {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -12,8 +12,8 @@
   row-gap: 0.5rem;
 }
 
-.textures-left,
-.textures-right {
+.textures-type,
+.textures-canvas {
   width: 25%;
 }
 
@@ -22,12 +22,12 @@
     flex-direction: column;
   }
 
-  .textures-left,
-  .textures-right {
+  .textures-type,
+  .textures-canvas {
     width: 100%;
   }
 
-  .textures-right {
+  .textures-canvas {
     display: flex;
     justify-content: center;
     margin-top: 1rem;
