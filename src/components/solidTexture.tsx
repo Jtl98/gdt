@@ -1,13 +1,14 @@
-import {
-  useEffect,
-  useState,
-  type ChangeEvent,
-  type Dispatch,
-  type SetStateAction,
-} from "react";
-import type { Rgb, RgbChannel, RgbImageData } from "../types";
+import { useEffect, useState, type ChangeEvent } from "react";
+import type {
+  CommonTextureAttributes,
+  Rgb,
+  RgbChannel,
+  RgbImageData,
+} from "../types";
 
-export default function SolidTexture({ setImageData }: SolidTextureAttributes) {
+export default function SolidTexture({
+  setImageData,
+}: CommonTextureAttributes) {
   const [rgb, setRgb] = useState<Rgb>({ r: 255, g: 255, b: 255 });
 
   useEffect(() => {
@@ -63,7 +64,3 @@ export default function SolidTexture({ setImageData }: SolidTextureAttributes) {
     </>
   );
 }
-
-type SolidTextureAttributes = {
-  setImageData: Dispatch<SetStateAction<RgbImageData>>;
-};

@@ -1,3 +1,5 @@
+import type { Dispatch, SetStateAction } from "react";
+
 export type Rgb = {
   r: number;
   g: number;
@@ -7,3 +9,7 @@ export type Rgb = {
 export type RgbChannel = keyof Rgb;
 
 export type RgbImageData = Rgb[][];
+
+export type CommonTextureAttributes = {
+  setImageData: Dispatch<SetStateAction<RgbImageData>>;
+};

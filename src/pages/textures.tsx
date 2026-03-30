@@ -27,7 +27,7 @@ export default function Textures() {
       case "solid":
         return <SolidTexture setImageData={setImageData} />;
       case "valueNoise":
-        return <ValueNoiseTexture />;
+        return <ValueNoiseTexture setImageData={setImageData} />;
     }
   }
 
