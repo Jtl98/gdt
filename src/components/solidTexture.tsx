@@ -5,6 +5,7 @@ import type {
   RgbChannel,
   RgbImageData,
 } from "../types";
+import "./solidTexture.css";
 
 export default function SolidTexture({
   setImageData,
@@ -39,7 +40,7 @@ export default function SolidTexture({
   }
 
   return (
-    <>
+    <div className="rgb">
       <input
         onChange={onChangeRgb("r")}
         max={255}
@@ -61,6 +62,6 @@ export default function SolidTexture({
         type="number"
         value={rgb.b}
       />
-    </>
+    </div>
   );
 }
