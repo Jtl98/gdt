@@ -1,34 +1,29 @@
 import { useEffect, useState, type ChangeEvent } from "react";
-import type {
-  CommonTextureAttributes,
-  Rgb,
-  RgbChannel,
-  RgbImageData,
+import {
+  RgbData,
+  type CommonTextureAttributes,
+  type Rgb,
+  type RgbChannel,
 } from "../types";
 import "./solidTexture.css";
 
 export default function SolidTexture({
-  setImageData,
+  size,
+  setRgbData,
 }: CommonTextureAttributes) {
   const [rgb, setRgb] = useState<Rgb>({ r: 255, g: 255, b: 255 });
 
   useEffect(() => {
-    const width = 256;
-    const height = 256;
-    const imageData: RgbImageData = [];
+    const rgbData = new RgbData(size);
 
-    for (let y = 0; y < height; y++) {
-      const row: Rgb[] = [];
-
-      for (let x = 0; x < width; x++) {
-        row.push(rgb);
+    for (let y = 0; y < size.height; y++) {
+      for (let x = 0; x < size.width; x++) {
+        rgbData.set(y, x, rgb);
       }
-
-      imageData.push(row);
     }
 
-    setImageData(imageData);
-  }, [rgb, setImageData]);
+    setRgbData(rgbData);
+  }, [rgb, size, setRgbData]);
 
   function onChangeRgb(channel: RgbChannel) {
     return (event: ChangeEvent<HTMLInputElement>) => {

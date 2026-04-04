@@ -1,15 +1,16 @@
-import { useRef, useState } from "react";
+import { useRef, useState, type ChangeEvent } from "react";
 import Canvas from "../components/canvas";
 import SolidTexture from "../components/solidTexture";
 import ValueNoiseTexture from "../components/valueNoiseTexture";
-import type { RgbImageData } from "../types";
+import { RgbData, type Dimension, type Size } from "../types";
 import "./textures.css";
 
 const imageFilename = "texture.png";
 
 export default function Textures() {
   const [textureType, setTextureType] = useState<TextureType>("solid");
-  const [imageData, setImageData] = useState<RgbImageData>([]);
+  const [size, setSize] = useState<Size>({ width: 256, height: 256 });
+  const [rgbData, setRgbData] = useState<RgbData>(new RgbData(size));
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   function download() {
@@ -25,15 +26,49 @@ export default function Textures() {
   function renderTextureType() {
     switch (textureType) {
       case "solid":
-        return <SolidTexture setImageData={setImageData} />;
+        return <SolidTexture size={size} setRgbData={setRgbData} />;
       case "valueNoise":
-        return <ValueNoiseTexture setImageData={setImageData} />;
+        return <ValueNoiseTexture size={size} setRgbData={setRgbData} />;
     }
+  }
+
+  function onChangeDimension(dimension: Dimension) {
+    return (event: ChangeEvent<HTMLInputElement>) => {
+      const value = Number(event.target.value);
+
+      if (Number.isInteger(value) && value >= 1)
+        setSize({ ...size, [dimension]: value });
+    };
   }
 
   return (
     <div className="textures-container">
-      <div className="textures-type">
+      <div className="textures-config">
+        <div className="textures-size">
+          <div>
+            <label htmlFor="width">width</label>
+            <br />
+            <input
+              id="width"
+              onChange={onChangeDimension("width")}
+              min={1}
+              type="number"
+              value={size.width}
+            />
+          </div>
+          <div>
+            <label htmlFor="height">height</label>
+            <br />
+            <input
+              id="height"
+              onChange={onChangeDimension("height")}
+              min={1}
+              type="number"
+              value={size.height}
+            />
+          </div>
+        </div>
+
         <select
           value={textureType}
           onChange={(e) => {
@@ -48,8 +83,9 @@ export default function Textures() {
 
         <button onClick={download}>download</button>
       </div>
+
       <div className="textures-canvas">
-        <Canvas canvasRef={canvasRef} newImageData={imageData} />
+        <Canvas canvasRef={canvasRef} rgbData={rgbData} />
       </div>
     </div>
   );

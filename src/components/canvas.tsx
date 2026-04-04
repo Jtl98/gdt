@@ -1,42 +1,41 @@
 import { useEffect } from "react";
-import type { RgbImageData } from "../types";
+import type { RgbData } from "../types";
 
-export default function Canvas({ canvasRef, newImageData }: CanvasAttributes) {
+export default function Canvas({ canvasRef, rgbData }: CanvasAttributes) {
   useEffect(() => {
     const { current } = canvasRef;
     const context = current?.getContext("2d");
-    if (!context || newImageData.length === 0) return;
+    if (!context || rgbData.length === 0) return;
 
-    const width = newImageData[0].length;
-    const height = newImageData.length;
+    const { width, height } = rgbData.size;
     const imageData = context.createImageData(width, height);
     const { data } = imageData;
 
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
-        const index = (y * width + x) * 4;
-        const { r, g, b } = newImageData[y][x];
+        const { r, g, b, index } = rgbData.getWithIndex(y, x);
 
-        data[index] = r;
-        data[index + 1] = g;
-        data[index + 2] = b;
-        data[index + 3] = 255;
+        const flatIndex = index * 4;
+        data[flatIndex] = r;
+        data[flatIndex + 1] = g;
+        data[flatIndex + 2] = b;
+        data[flatIndex + 3] = 255;
       }
     }
 
     context.putImageData(imageData, 0, 0);
-  }, [canvasRef, newImageData]);
+  }, [canvasRef, rgbData]);
 
   return (
     <canvas
       ref={canvasRef}
-      width={newImageData[0]?.length ?? 0}
-      height={newImageData.length}
+      width={rgbData.size.width}
+      height={rgbData.size.height}
     ></canvas>
   );
 }
 
 type CanvasAttributes = {
   canvasRef: React.RefObject<HTMLCanvasElement | null>;
-  newImageData: RgbImageData;
+  rgbData: RgbData;
 };

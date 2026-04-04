@@ -4,7 +4,7 @@
   margin-top: 1rem;
 }
 
-.textures-type {
+.textures-config {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -12,7 +12,12 @@
   row-gap: 0.5rem;
 }
 
-.textures-type,
+.textures-size {
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+.textures-config,
 .textures-canvas {
   width: 25%;
 }
@@ -22,7 +27,7 @@
     flex-direction: column;
   }
 
-  .textures-type,
+  .textures-config,
   .textures-canvas {
     width: 100%;
   }
