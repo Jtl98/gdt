@@ -1,10 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, type RefObject } from "react";
 import type { RgbData } from "../types";
 
 export default function Canvas({ canvasRef, rgbData }: CanvasAttributes) {
   useEffect(() => {
-    const { current } = canvasRef;
-    const context = current?.getContext("2d");
+    const context = canvasRef.current?.getContext("2d");
     if (!context || rgbData.length === 0) return;
 
     const { width, height } = rgbData.size;
@@ -36,6 +35,6 @@ export default function Canvas({ canvasRef, rgbData }: CanvasAttributes) {
 }
 
 type CanvasAttributes = {
-  canvasRef: React.RefObject<HTMLCanvasElement | null>;
+  canvasRef: RefObject<HTMLCanvasElement | null>;
   rgbData: RgbData;
 };
