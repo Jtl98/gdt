@@ -69,15 +69,20 @@ export default function Textures() {
           </div>
         </div>
 
-        <select
-          value={textureType}
-          onChange={(e) => {
-            setTextureType(e.target.value as TextureType);
-          }}
-        >
-          <option value="solid">solid</option>
-          <option value="valueNoise">value noise</option>
-        </select>
+        <div>
+          <label htmlFor="type">type</label>
+          <br />
+          <select
+            id="type"
+            value={textureType}
+            onChange={(e) => {
+              setTextureType(e.target.value as TextureType);
+            }}
+          >
+            <option value="solid">solid</option>
+            <option value="valueNoise">value noise</option>
+          </select>
+        </div>
 
         {renderTextureType()}
 

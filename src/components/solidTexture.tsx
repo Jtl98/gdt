@@ -36,27 +36,44 @@ export default function SolidTexture({
 
   return (
     <div className="rgb">
-      <input
-        onChange={onChangeRgb("r")}
-        max={255}
-        min={0}
-        type="number"
-        value={rgb.r}
-      />
-      <input
-        onChange={onChangeRgb("g")}
-        max={255}
-        min={0}
-        type="number"
-        value={rgb.g}
-      />
-      <input
-        onChange={onChangeRgb("b")}
-        max={255}
-        min={0}
-        type="number"
-        value={rgb.b}
-      />
+      <div>
+        <label htmlFor="red">red</label>
+        <br />
+        <input
+          id="red"
+          onChange={onChangeRgb("r")}
+          max={255}
+          min={0}
+          type="number"
+          value={rgb.r}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="green">green</label>
+        <br />
+        <input
+          id="green"
+          onChange={onChangeRgb("g")}
+          max={255}
+          min={0}
+          type="number"
+          value={rgb.g}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="blue">blue</label>
+        <br />
+        <input
+          id="blue"
+          onChange={onChangeRgb("b")}
+          max={255}
+          min={0}
+          type="number"
+          value={rgb.b}
+        />
+      </div>
     </div>
   );
 }
