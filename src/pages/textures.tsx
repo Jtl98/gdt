@@ -1,7 +1,7 @@
 import { useRef, useState, type ChangeEvent } from "react";
 import Canvas from "../components/canvas";
 import SolidTexture from "../components/solidTexture";
-import ValueNoiseTexture from "../components/valueNoiseTexture";
+import WhiteNoiseTexture from "../components/whiteNoiseTexture";
 import { RgbData, type Dimension, type Size } from "../types";
 import "./textures.css";
 
@@ -27,8 +27,8 @@ export default function Textures() {
     switch (textureType) {
       case "solid":
         return <SolidTexture size={size} setRgbData={setRgbData} />;
-      case "valueNoise":
-        return <ValueNoiseTexture size={size} setRgbData={setRgbData} />;
+      case "whiteNoise":
+        return <WhiteNoiseTexture size={size} setRgbData={setRgbData} />;
     }
   }
 
@@ -80,7 +80,7 @@ export default function Textures() {
             }}
           >
             <option value="solid">solid</option>
-            <option value="valueNoise">value noise</option>
+            <option value="whiteNoise">white noise</option>
           </select>
         </div>
 
@@ -96,4 +96,4 @@ export default function Textures() {
   );
 }
 
-type TextureType = "solid" | "valueNoise";
+type TextureType = "solid" | "whiteNoise";

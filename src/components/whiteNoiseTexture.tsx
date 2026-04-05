@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-import valueNoise from "../scripts/valueNoise";
+import whiteNoise from "../scripts/whiteNoise";
 import type { CommonTextureAttributes } from "../types";
 
-export default function ValueNoiseTexture({
+export default function WhiteNoiseTexture({
   size,
   setRgbData,
 }: CommonTextureAttributes) {
   useEffect(() => {
-    const rgbData = valueNoise(size);
+    const rgbData = whiteNoise(size);
     setRgbData(rgbData);
   }, [size, setRgbData]);
 

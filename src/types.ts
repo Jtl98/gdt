@@ -1,11 +1,5 @@
 import type { Dispatch, SetStateAction } from "react";
 
-export type Rgb = {
-  r: number;
-  g: number;
-  b: number;
-};
-
 export type RgbChannel = keyof Rgb;
 
 export type Size = {
@@ -20,6 +14,30 @@ export type CommonTextureAttributes = {
   setRgbData: Dispatch<SetStateAction<RgbData>>;
 };
 
+export class Rgb {
+  r: number;
+  g: number;
+  b: number;
+
+  constructor(r: number, g: number, b: number) {
+    this.r = r;
+    this.g = g;
+    this.b = b;
+  }
+
+  static fromValue(value: number) {
+    return new Rgb(value, value, value);
+  }
+
+  withChannel(channel: RgbChannel, value: number) {
+    return new Rgb(
+      channel === "r" ? value : this.r,
+      channel === "g" ? value : this.g,
+      channel === "b" ? value : this.b,
+    );
+  }
+}
+
 export class RgbData extends Array<Rgb> {
   size: Size;
 
@@ -30,7 +48,7 @@ export class RgbData extends Array<Rgb> {
 
   getWithIndex(y: number, x: number) {
     const index = this.calculateIndex(y, x);
-    return { index, ...this[index] };
+    return Object.assign({ index }, this[index]);
   }
 
   set(y: number, x: number, rgb: Rgb) {
