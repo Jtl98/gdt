@@ -1,8 +1,8 @@
 import { useEffect, useState, type ChangeEvent } from "react";
 import {
+  Rgb,
   RgbData,
   type CommonTextureAttributes,
-  type Rgb,
   type RgbChannel,
 } from "../types";
 import "./solidTexture.css";
@@ -11,7 +11,7 @@ export default function SolidTexture({
   size,
   setRgbData,
 }: CommonTextureAttributes) {
-  const [rgb, setRgb] = useState<Rgb>({ r: 255, g: 255, b: 255 });
+  const [rgb, setRgb] = useState<Rgb>(Rgb.fromValue(255));
 
   useEffect(() => {
     const rgbData = new RgbData(size);
@@ -30,7 +30,7 @@ export default function SolidTexture({
       const value = Number(event.target.value);
 
       if (Number.isInteger(value) && value >= 0 && value <= 255)
-        setRgb({ ...rgb, [channel]: value });
+        setRgb(rgb.withChannel(channel, value));
     };
   }
 
