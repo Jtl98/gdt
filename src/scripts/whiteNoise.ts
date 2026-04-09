@@ -1,8 +1,8 @@
-import seedrandom from "seedrandom";
 import { Rgb, RgbData, type Size } from "../types";
+import { createRng } from "./noiseUtils";
 
-export default function (size: Size) {
-  const rng = seedrandom();
+export default function (seed: string, size: Size) {
+  const rng = createRng(seed);
   const rgbData = new RgbData(size);
 
   for (let y = 0; y < size.height; y++) {
