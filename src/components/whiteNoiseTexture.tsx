@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import whiteNoise from "../scripts/whiteNoise";
 import type { CommonTextureAttributes } from "../types";
 
@@ -6,10 +6,24 @@ export default function WhiteNoiseTexture({
   size,
   setRgbData,
 }: CommonTextureAttributes) {
-  useEffect(() => {
-    const rgbData = whiteNoise(size);
-    setRgbData(rgbData);
-  }, [size, setRgbData]);
+  const [seed, setSeed] = useState("");
 
-  return null;
+  useEffect(() => {
+    const rgbData = whiteNoise(seed, size);
+    setRgbData(rgbData);
+  }, [seed, size, setRgbData]);
+
+  return (
+    <div>
+      <label htmlFor="seed">seed</label>
+      <br />
+      <input
+        id="seed"
+        onChange={(e) => {
+          setSeed(e.target.value);
+        }}
+        value={seed}
+      />
+    </div>
+  );
 }
