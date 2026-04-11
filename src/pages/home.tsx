@@ -1,7 +1,9 @@
+import { Container } from "@mui/material";
+
 export default function Home() {
   return (
-    <div>
+    <Container maxWidth="md">
       <h1>game dev tools</h1>
-    </div>
+    </Container>
   );
 }

@@ -1,9 +1,20 @@
+import {
+  Box,
+  Button,
+  Container,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+  TextField,
+} from "@mui/material";
 import { useRef, useState, type ChangeEvent } from "react";
 import Canvas from "../components/canvas";
 import SolidTexture from "../components/solidTexture";
 import WhiteNoiseTexture from "../components/whiteNoiseTexture";
 import { RgbData, type Dimension, type Size } from "../types";
-import "./textures.css";
 
 const imageFilename = "texture.png";
 
@@ -42,57 +53,56 @@ export default function Textures() {
   }
 
   return (
-    <div className="textures-container">
-      <div className="textures-config">
-        <div className="textures-size">
-          <div>
-            <label htmlFor="width">width</label>
-            <br />
-            <input
-              id="width"
+    <Container maxWidth="md">
+      <Grid container marginTop={2} spacing={2}>
+        <Grid size={6}>
+          <Stack direction="row" spacing={2}>
+            <TextField
+              label="width"
               onChange={onChangeDimension("width")}
-              min={1}
-              type="number"
               value={size.width}
+              variant="outlined"
             />
-          </div>
-          <div>
-            <label htmlFor="height">height</label>
-            <br />
-            <input
-              id="height"
+
+            <TextField
+              label="height"
               onChange={onChangeDimension("height")}
-              min={1}
-              type="number"
               value={size.height}
+              variant="outlined"
             />
-          </div>
-        </div>
+          </Stack>
 
-        <div>
-          <label htmlFor="type">type</label>
-          <br />
-          <select
-            id="type"
-            value={textureType}
-            onChange={(e) => {
-              setTextureType(e.target.value as TextureType);
-            }}
-          >
-            <option value="solid">solid</option>
-            <option value="whiteNoise">white noise</option>
-          </select>
-        </div>
+          <Stack marginTop={2}>
+            <FormControl>
+              <InputLabel id="type-label">type</InputLabel>
+              <Select
+                label="type"
+                labelId="type-label"
+                onChange={(e) => {
+                  setTextureType(e.target.value as TextureType);
+                }}
+                value={textureType}
+              >
+                <MenuItem value="solid">solid</MenuItem>
+                <MenuItem value="whiteNoise">white noise</MenuItem>
+              </Select>
+            </FormControl>
+          </Stack>
 
-        {renderTextureType()}
+          <Box marginTop={2}>{renderTextureType()}</Box>
 
-        <button onClick={download}>download</button>
-      </div>
+          <Box marginTop={2}>
+            <Button onClick={download} variant="outlined">
+              download
+            </Button>
+          </Box>
+        </Grid>
 
-      <div className="textures-canvas">
-        <Canvas canvasRef={canvasRef} rgbData={rgbData} />
-      </div>
-    </div>
+        <Grid size={6}>
+          <Canvas canvasRef={canvasRef} rgbData={rgbData} />
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
 

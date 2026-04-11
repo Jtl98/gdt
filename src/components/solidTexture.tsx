@@ -1,3 +1,4 @@
+import { Stack, TextField } from "@mui/material";
 import { useEffect, useState, type ChangeEvent } from "react";
 import {
   Rgb,
@@ -5,7 +6,6 @@ import {
   type CommonTextureAttributes,
   type RgbChannel,
 } from "../types";
-import "./solidTexture.css";
 
 export default function SolidTexture({
   size,
@@ -35,45 +35,27 @@ export default function SolidTexture({
   }
 
   return (
-    <div className="rgb">
-      <div>
-        <label htmlFor="red">red</label>
-        <br />
-        <input
-          id="red"
-          onChange={onChangeRgb("r")}
-          max={255}
-          min={0}
-          type="number"
-          value={rgb.r}
-        />
-      </div>
+    <Stack direction="row" spacing={2}>
+      <TextField
+        label="red"
+        onChange={onChangeRgb("r")}
+        value={rgb.r}
+        variant="outlined"
+      />
 
-      <div>
-        <label htmlFor="green">green</label>
-        <br />
-        <input
-          id="green"
-          onChange={onChangeRgb("g")}
-          max={255}
-          min={0}
-          type="number"
-          value={rgb.g}
-        />
-      </div>
+      <TextField
+        label="green"
+        onChange={onChangeRgb("g")}
+        value={rgb.g}
+        variant="outlined"
+      />
 
-      <div>
-        <label htmlFor="blue">blue</label>
-        <br />
-        <input
-          id="blue"
-          onChange={onChangeRgb("b")}
-          max={255}
-          min={0}
-          type="number"
-          value={rgb.b}
-        />
-      </div>
-    </div>
+      <TextField
+        label="blue"
+        onChange={onChangeRgb("b")}
+        value={rgb.b}
+        variant="outlined"
+      />
+    </Stack>
   );
 }
