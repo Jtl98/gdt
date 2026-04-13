@@ -1,4 +1,4 @@
-import { Stack, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import whiteNoise from "../scripts/whiteNoise";
 import type { CommonTextureAttributes } from "../types";
@@ -15,15 +15,13 @@ export default function WhiteNoiseTexture({
   }, [seed, size, setRgbData]);
 
   return (
-    <Stack>
-      <TextField
-        label="seed"
-        onChange={(e) => {
-          setSeed(e.target.value);
-        }}
-        value={seed}
-        variant="outlined"
-      />
-    </Stack>
+    <TextField
+      label="seed"
+      onChange={(e) => {
+        setSeed(e.target.value);
+      }}
+      value={seed}
+      variant="outlined"
+    />
   );
 }

@@ -1,8 +1,10 @@
 import {
   Box,
   Button,
+  Checkbox,
   Container,
   FormControl,
+  FormControlLabel,
   Grid,
   InputLabel,
   MenuItem,
@@ -21,7 +23,8 @@ const imageFilename = "texture.png";
 export default function Textures() {
   const [textureType, setTextureType] = useState<TextureType>("solid");
   const [size, setSize] = useState<Size>({ width: 256, height: 256 });
-  const [rgbData, setRgbData] = useState<RgbData>(new RgbData(size));
+  const [rgbData, setRgbData] = useState(new RgbData(size));
+  const [constrain, setConstrain] = useState(true);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   function download() {
@@ -55,7 +58,7 @@ export default function Textures() {
   return (
     <Container maxWidth="md">
       <Grid container marginTop={2} spacing={2}>
-        <Grid size={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <Stack direction="row" spacing={2}>
             <TextField
               label="width"
@@ -72,34 +75,51 @@ export default function Textures() {
             />
           </Stack>
 
-          <Stack marginTop={2}>
-            <FormControl>
-              <InputLabel id="type-label">type</InputLabel>
-              <Select
-                label="type"
-                labelId="type-label"
-                onChange={(e) => {
-                  setTextureType(e.target.value as TextureType);
-                }}
-                value={textureType}
-              >
-                <MenuItem value="solid">solid</MenuItem>
-                <MenuItem value="whiteNoise">white noise</MenuItem>
-              </Select>
-            </FormControl>
-          </Stack>
+          <FormControl sx={{ marginTop: 2 }}>
+            <InputLabel id="type-label">type</InputLabel>
+            <Select
+              label="type"
+              labelId="type-label"
+              onChange={(e) => {
+                setTextureType(e.target.value as TextureType);
+              }}
+              value={textureType}
+            >
+              <MenuItem value="solid">solid</MenuItem>
+              <MenuItem value="whiteNoise">white noise</MenuItem>
+            </Select>
+          </FormControl>
 
           <Box marginTop={2}>{renderTextureType()}</Box>
 
-          <Box marginTop={2}>
+          <Stack direction="row" marginTop={2} spacing={1}>
             <Button onClick={download} variant="outlined">
               download
             </Button>
-          </Box>
+
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={constrain}
+                  onChange={(e) => {
+                    setConstrain(e.target.checked);
+                  }}
+                />
+              }
+              label="constrain"
+            />
+          </Stack>
         </Grid>
 
-        <Grid size={6}>
-          <Canvas canvasRef={canvasRef} rgbData={rgbData} />
+        <Grid size={{ xs: 12, sm: 6 }}>
+          <Box
+            sx={{ aspectRatio: 1 / 1 }}
+            {...(constrain && {
+              overflow: "auto",
+            })}
+          >
+            <Canvas canvasRef={canvasRef} rgbData={rgbData} />
+          </Box>
         </Grid>
       </Grid>
     </Container>
