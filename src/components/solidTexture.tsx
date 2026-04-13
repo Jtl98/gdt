@@ -16,12 +16,7 @@ export default function SolidTexture({
   useEffect(() => {
     const rgbData = new RgbData(size);
 
-    for (let y = 0; y < size.height; y++) {
-      for (let x = 0; x < size.width; x++) {
-        rgbData.set(y, x, rgb);
-      }
-    }
-
+    rgbData.fill(rgb);
     setRgbData(rgbData);
   }, [rgb, size, setRgbData]);
 
