@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import { useRef, useState, type ChangeEvent } from "react";
 import Canvas from "../components/canvas";
+import SimplexNoiseTexture from "../components/simplexNoiseTexture";
 import SolidTexture from "../components/solidTexture";
 import WhiteNoiseTexture from "../components/whiteNoiseTexture";
 import { RgbData, type Dimension, type Size } from "../types";
@@ -43,6 +44,8 @@ export default function Textures() {
         return <SolidTexture size={size} setRgbData={setRgbData} />;
       case "whiteNoise":
         return <WhiteNoiseTexture size={size} setRgbData={setRgbData} />;
+      case "simplexNoise":
+        return <SimplexNoiseTexture size={size} setRgbData={setRgbData} />;
     }
   }
 
@@ -87,6 +90,7 @@ export default function Textures() {
             >
               <MenuItem value="solid">solid</MenuItem>
               <MenuItem value="whiteNoise">white noise</MenuItem>
+              <MenuItem value="simplexNoise">simplex noise</MenuItem>
             </Select>
           </FormControl>
 
@@ -126,4 +130,4 @@ export default function Textures() {
   );
 }
 
-type TextureType = "solid" | "whiteNoise";
+type TextureType = "solid" | "whiteNoise" | "simplexNoise";
